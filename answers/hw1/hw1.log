@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.3)  24 SEP 2024 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.3)  26 SEP 2024 16:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex"
-(d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex
+**"d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex"
+(d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
 (d:/w/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -950,7 +950,7 @@ LaTeX Font Info:    Trying to load font information for C70+rm on input line 61.
 File: c70rm.fd 2022/07/14 v2.5.10 Chinese font definition (CTEX)
 )
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:90: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:90: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -963,7 +963,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:96: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:96: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -981,7 +981,7 @@ File: ctex-zhmap-windows.tex 2022/07/14 v2.5.10 Windows font map loader for pdfT
 
 ]
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:118: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:118: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -994,7 +994,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:121: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:121: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1007,7 +1007,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:125: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:125: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1030,7 +1030,7 @@ LaTeX Warning: Reference `thm:chernoff' on page 3 undefined on input line 172.
 LaTeX Warning: Reference `thm:chernoff' on page 3 undefined on input line 176.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:184: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:184: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1048,7 +1048,7 @@ Overfull \hbox (82.03828pt too wide) in paragraph at lines 340--341
  []
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:343: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:343: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1061,7 +1061,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:344: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:344: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1074,7 +1074,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex:348: Package amsmath Error: Erroneous nesting of equation structures;
+d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:348: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
@@ -1109,12 +1109,12 @@ Package rerunfilecheck Info: Checksums for `hw1.out':
  ) 
 Here is how much of TeX's memory you used:
  27338 strings out of 474104
- 515745 string characters out of 5746497
+ 515757 string characters out of 5746497
  1944496 words of memory out of 5000000
  49185 multiletter control sequences out of 15000+600000
  569528 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,12n,93p,785b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,12n,93p,789b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Windows/Fonts/simsun.ttc
 
 pdfTeX warning: pdflatex.exe (file c:/Windows/Fonts/simsun.ttc): subfont unisong20: wrong mapping: character 11 --> 0x200B --> .notdef

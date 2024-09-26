@@ -1,8 +1,8 @@
-PWD d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers
+PWD d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1
 INPUT d:/w/texlive/2024/texmf.cnf
 INPUT d:/w/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT d:/w/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1.tex
+INPUT d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex
 OUTPUT hw1.log
 INPUT d:/w/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT d:/w/texlive/2024/texmf-dist/tex/latex/base/article.cls
