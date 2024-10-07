@@ -91,7 +91,7 @@ s\Gamma(s)&=\int_{0}^{+\infty}sx^{s-1}\mathrm e^{-x}\mathrm dx\\
     \item [(2)] 
 $$\begin{align*}
 2\int_{0}^{+\infty}x^{2s-1}\mathrm{e}^{-x^2}\mathrm{d}x &= \int_{0}^{+\infty}2t^{s-\frac{1}{2}}\mathrm e^{-t}\mathrm d \sqrt{t} \quad (t=x^2)\\
-&= \int_{0}^{+\infty}2t^{s-1}\mathrm e^{-t}\mathrm dt\\
+&= \int_{0}^{+\infty}t^{s-1}\mathrm e^{-t}\mathrm dt\\
 &= \Gamma (s)
 \end{align*}$$
 \end{itemize}
@@ -124,7 +124,7 @@ Since $\{X_i\}_m,\{Y_i\}_n$ are independent variables, $X+Y \sim \chi^2(m+n)$
 $$\begin{align*}&X=\sum_{i=1}^m X_i^2,Y=\sum_{i=1}^n Y_i^2\\
 \Rightarrow& X-Y=\sum_{i=1}^m X_i^2-\sum_{i=1}^n Y_i^2\end{align*}$$
 Given that $\{X_i\}_m,\{Y_i\}_n$ are independent variables, we have
-$$\mathrm{D}(X-Y)=\sum_{i=1}^m \mathrm D(X_i^2)+\sum_{i=1}^n \mathrm D(Y_i^2)=M+N\neq M-N$$
+$$\mathrm{D}(X-Y)=\sum_{i=1}^m \mathrm D(X_i^2)+\sum_{i=1}^n \mathrm D(Y_i^2)=2M+2N\neq 2M-2N$$
 Thus $X-Y \sim \chi^2(m-n)$ is wrong
 \end{itemize}
 \end{answer}
@@ -321,8 +321,8 @@ Consider the following geometries in $d$-dimensional space:
 \begin{answer} ~
 \begin{itemize}
     \item [(1)] 
-$x,w$ are identially distributed because they are all uniformly random unit vectors in $d$ dimension.
-$(x,y), (w,z)$ are identially distributed because they are all pairs of uniformly random unit vectors in $d$ dimension. In fact $(x,y)$ is also in a plane.
+$x,w$ are identically distributed because they are all uniformly random unit vectors in $d$ dimension.
+$(x,y), (w,z)$ are identically distributed because they are all pairs of uniformly random unit vectors in $d$ dimension. In fact $(x,y)$ is also in a plane.
     \item [(2)] 
 Let $y$ be a vector along the positive direction of the $x_1$ axis.
 $$Z=x^Ty=|x||y|\cos\theta_1$$
@@ -341,7 +341,7 @@ Define $V(\Phi_d,R)=V(\left\{(x_1,\cdots,x_d)\mid |x_1|+\cdots+|x_d|\leq R\right
 $$V(\Phi_d,R)=V(\Phi_d)R^d,\quad A(\Phi_d,R)=A(\Phi_d)R^{d-1}$$
 For $t=x_d\in [-1,1]$,
 $$\begin{align*}V(\Phi_d)&=\left|\int_{-1}^{1}V(\left\{(x_1,\cdots,x_{d-1})\mid |x_1|+\cdots+|x_{d-1}|\leq 1-|t|\right\})\mathrm dt \right|\\ &= 2\left|\int_{0}^1 V(\Phi_{d-1},1-t)\mathrm dt\right|\\&=2V(\Phi_{d-1})\left|\int_{0}^{1}(1-t)^{d-1}\mathrm dt \right|\\&=\frac{2V(\Phi_{d-1})}{d}\end{align*}$$
-$$\begin{align*}A(\Phi_d)&=\left|\int_{-1}^{1}V(\left\{(x_1,\cdots,x_{d-1})\mid |x_1|+\cdots+|x_{d-1}|\leq 1-|t|\right\})\mathrm dt \right|\\ &= 2\left|\int_{0}^1 A(\Phi_{d-1},1-t)\mathrm dt\right|\\&=2A(\Phi_{d-1})\left|\int_{0}^{1}(1-t)^{d-1}\mathrm dt \right|\\&=\frac{2A(\Phi_{d-1})}{d}\end{align*}$$
+
 Given that $V(\Phi_{2})=2$, we find
 $$V(\Phi_d)=\frac{2^d}{d!}$$
 About $A(\Phi_d)$, we have

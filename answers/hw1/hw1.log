@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.3)  26 SEP 2024 16:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.3)  7 OCT 2024 18:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1061,19 +1061,6 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:344: Package amsmath Error: Erroneous nesting of equation structures;
-(amsmath)                trying to recover with `aligned'.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.344 ...|\\&=\frac{2A(\Phi_{d-1})}{d}\end{align*}
-                                                  $$
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
 d:/新建文件夹 (2)/pku/课程资料/大三上/信数/answers/hw1/hw1.tex:348: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
@@ -1086,7 +1073,7 @@ l.348 ...\frac{A(\Phi_{d})}{d\sqrt{d}}\end{align*}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[8] [9] (./hw1.aux)
+[8] (./hw1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -1108,8 +1095,8 @@ Package rerunfilecheck Info: Checksums for `hw1.out':
 (rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27338 strings out of 474104
- 515757 string characters out of 5746497
+ 27337 strings out of 474104
+ 515751 string characters out of 5746497
  1944496 words of memory out of 5000000
  49185 multiletter control sequences out of 15000+600000
  569528 words of font info for 74 fonts, out of 8000000 for 9000
@@ -1119,10 +1106,10 @@ Here is how much of TeX's memory you used:
 
 pdfTeX warning: pdflatex.exe (file c:/Windows/Fonts/simsun.ttc): subfont unisong20: wrong mapping: character 11 --> 0x200B --> .notdef
 ><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/w/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on hw1.pdf (9 pages, 225431 bytes).
+Output written on hw1.pdf (8 pages, 224698 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 11 named destinations out of 1000 (max. 500000)
+ 150 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
  25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
