@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper]{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage{amsmath,amsfonts,graphicx,amssymb,bm,amsthm}
+%\usepackage{algorithm,algorithmicx}
+\usepackage[ruled]{algorithm2e}
+\usepackage[noend]{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{arrows,automata}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=blue,      
+	urlcolor=blue,
+	citecolor=cyan,
+}			
+
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.5 em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\hfill$\blacktriangleleft$\end{trivlist}}
+\newenvironment{answer}[1][Answer]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}\hskip \labelsep]}{\hfill$\lhd$\end{trivlist}}
+
+\newcommand\E{\mathbb{E}}
+\newcommand\per{\mathrm{per}}
+
+
+\title{Homework \#3}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{Peking University}
+\chead{}
+\rhead{Mathematical Foundations for the Information Age, 2024 Fall}
+
+\begin{center}
+    {\LARGE \bf Homework \#3}\\
+    {Due: 2024-11-17 23:59 \quad$|$\quad 7 Problems, 100 Pts}\\
+    {Name: XXX, ID: XXX}            % Write down your name and ID here.
+\end{center}
+
+
+
+\begin{problem}{1 (10')}
+Suppose that the singular value decomposition of square matrix $\bm A$ is $\bm A = \bm U \bm \Sigma \bm V^\top$. Find out the maximum value of $\|\bm A - \bm W\|_F$ where $\bm W$ is an orthogonal matrix.
+\end{problem}
+
+
+\begin{problem}{2 (12')} Suppose $\bm A=\sum_{i=1}^r \sigma_i \bm u_i \bm v_i^\top$ is the SVD of matrix $\bm A$ where $\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r>0$ and $r\geq 1$. Answer the following problems. You don't need to prove your result.
+    \begin{itemize}
+        \item [(1)] (3') Determine whether there exists $\alpha\in\mathbb{R}$, such that there exists an absolute constant $c>0$, for any $r\geq 1$, any matrix $\bm A$ and $k=1,2,\cdots,r$,
+        \begin{align*}
+            \min_{\mathrm{rank}(\bm B)\leq k}\frac{\|\bm A-\bm B\|_F}{\|\bm A\|_F}\leq ck^\alpha.
+        \end{align*}
+        If so, write down the value of minimum $\alpha$ as well.
+        \item [(2)] (3') Determine whether there exists $\alpha\in\mathbb{R}$, such that there exists an absolute constant $c>0$, for any $r\geq 1$, any matrix $\bm A$ and $k=1,2,\cdots,r$,
+        \begin{align*}
+            \min_{\mathrm{rank}(\bm B)\leq k}\frac{\|\bm A-\bm B\|_F}{\|\bm A\|_2}\leq ck^\alpha.
+        \end{align*}
+        If so, write down the value of minimum $\alpha$ as well.
+        \item [(3)] (3') Determine whether there exists $\alpha\in\mathbb{R}$, such that there exists an absolute constant $c>0$, for any $r\geq 1$, any matrix $\bm A$ and $k=1,2,\cdots,r$,
+        \begin{align*}
+            \min_{\mathrm{rank}(\bm B)\leq k}\frac{\|\bm A-\bm B\|_2}{\|\bm A\|_F}\leq ck^\alpha.
+        \end{align*}
+        If so, write down the value of minimum $\alpha$ as well.
+        \item [(4)] (3') Determine whether there exists $\alpha\in\mathbb{R}$, such that there exists an absolute constant $c>0$, for any $r\geq 1$, any matrix $\bm A$ and $k=1,2,\cdots,r$,
+        \begin{align*}
+            \min_{\mathrm{rank}(\bm B)\leq k}\frac{\|\bm A-\bm B\|_2}{\|\bm A\|_2}\leq ck^\alpha.
+        \end{align*}
+        If so, write down the value of minimum $\alpha$ as well.
+    \end{itemize}
+\end{problem}
+
+
+\begin{problem}{3 (26')}
+Recall the Johnson-Lindenstrauss lemma we learned in class. 
+\begin{theorem}[Johnson-Lindenstrauss Lemma]
+    Given $\epsilon\in (0,1)$ and $n$ vectors $\bm x_1 , \cdots , \bm x_n \in \mathbb{R}^m$. Pick a random matrix $\bm \Pi\in\mathbb{R}^{k\times m}$ as $\bm\Pi=\frac{1}{\sqrt{k}}\bm W$ where each entry $W_{i,j}$ ($1\leq i\leq k,1\leq j\leq m$) is sampled independently from $\mathcal{N}(0,1)$. Then there exists an absolute constant $c_1>0$, such that when $k\geq\frac{c_1\ln n}{\epsilon^2}$, with probability at least $1-\frac{3}{2n}$, for all $i,j\in\{1,2,\cdots,n\}$,
+    \begin{align*}
+        (1-\epsilon)\|\bm x_i-\bm x_j\|_2\leq\|\bm \Pi \bm x_i-\bm \Pi \bm x_j\|_2\leq(1+\epsilon)\|\bm x_i-\bm x_j\|_2.
+    \end{align*} 
+\end{theorem}
+
+In this problem, we are going to use Johnson-Lindenstrauss lemma to prove all big matrices are approximately low-rank. 
+
+\begin{itemize}
+    \item [(1)] (2') Given $\epsilon\in (0,1)$ and $n$ vectors $\bm x_1,\cdots,\bm x_n\in\mathbb{R}^m$. Prove that, there exists an absolute constant $c_2>0$, such that when $k\geq\frac{c_2\ln n}{\epsilon^2}$, there exists a matrix $\bm \Pi\in\mathbb{R}^{k\times m}$ satisfying 
+    \begin{align*}
+        (1-\epsilon)\|\bm x_i-\bm x_j\|_2^2\leq\|\bm\Pi \bm x_i-\bm \Pi \bm x_j\|_2^2\leq(1+\epsilon)\|\bm x_i-\bm x_j\|_2^2
+    \end{align*}
+    for all $i,j\in\{1,2,\cdots,n\}$.
+    \item [(2)] (7') Given $\epsilon\in(0,1)$ and $n$ vectors $\bm x_1,\cdots,\bm x_n\in\mathbb{R}^m$. Prove that, there exists an absolute constant $c_3>0$, such that for $r\geq\frac{c_3\ln(n+1)}{\epsilon^2}$, there exists a matrix $\bm Q\in\mathbb{R}^{r\times m}$ satisfying 
+    \begin{align*}
+        |\bm x_i^\top \bm x_j-\bm x_i^\top \bm Q^\top \bm Q \bm x_j|\leq\epsilon(\|\bm x_i\|_2^2+\|\bm x_j\|_2^2-\bm x_i^\top \bm x_j)
+    \end{align*} 
+    for all $i,j\in\{1,2,\cdots,n\}$.
+    \item [] \textit{[Hint: Consider $2\bm x_i^\top \bm x_j=\|\bm x_i\|_2^2+\|\bm x_j\|_2^2-\|\bm x_i-\bm x_j\|_2^2$.]}
+    \item [(3)] (7') For any matrix $\bm M$, define 
+    \begin{align*}
+    \|\bm M\|_{\max}=\max_{i,j}|M_{ij}|.
+    \end{align*}
+    Given matrix $\bm X\in\mathbb{R}^{m\times n}$.
+    \begin{itemize}
+        \item [(a)] (2') Prove that, $\|\bm X\|_{\max}\leq \|\bm X\|_2$.
+        \item [(b)] (5') Prove that, there exists matrix $\bm U=(\bm u_1\;\cdots\;\bm u_m)\in\mathbb{R}^{n\times m}, \bm V=(\bm v_1\;\cdots\;\bm v_n)\in\mathbb{R}^{n\times n}$ such that $\bm X=\bm U^\top \bm V$ and $\|\bm u_i\|_2^2\leq\|\bm X\|_2,\;\|\bm v_j\|_2^2\leq\|\bm X\|_2$.
+    \end{itemize}
+    \item [(4)] (5') Suppose $\bm X\in\mathbb{R}^{m\times n}$ where $m\geq n$ and $\epsilon\in(0,1)$. Prove that, there exists an absolute constant $c_4>0$, such that with $r=\left\lceil\frac{c_4\ln(m+n+1)}{\epsilon^2}\right\rceil$, 
+    \begin{align*}
+        \min_{\mathrm{rank}(\bm Y)\leq r}\|\bm X-\bm Y\|_{\max}\leq\epsilon\|\bm X\|_2.
+    \end{align*}
+    \item [(5)] (5') A side note is that the result in problem (4) doesn't work for small matrix (small $n$). Consider $\bm X=\bm I_2$. Find out the value of 
+    \begin{align*}
+        \min_{\mathrm{rank}(\bm Y)\leq 1}\|\bm X-\bm Y\|_{\max}.
+    \end{align*} 
+    Prove your result.
+\end{itemize}
+\end{problem}
+
+
+\begin{problem}{4 (22')}~
+\begin{itemize}
+    \item [(1)] (8') Given $\bm S=\mathrm{diag}(s_1,s_2,\cdots,s_n)$ where $s_1\geq s_2\geq\cdots\geq s_n\geq 0$. Find out the value of
+    \begin{align*}
+        \max_{\bm W^\top \bm W =\bm I_r}\|\bm W^\top \bm S\|_F
+    \end{align*}
+    where $\bm W\in\mathbb{R}^{n\times r}$ ($n\geq r$). 
+    \item [(2)] (14') Suppose the singular values of a $m\times n$ ($m\geq n$) matrix $\bm A$ are $\sigma_i(\bm A)$, and $\sigma_1(\bm A)\geq\cdots\geq\sigma_n(\bm A)$.
+    \begin{itemize}
+        \item [(a)] (12') Prove that, for any $k\in[n]$, 
+        \begin{align*}
+            \sum_{i=1}^k\sigma_i(\bm A)=\max_{\bm U^\top \bm U=\bm I_k,\;\bm V^\top \bm V=\bm I_k}|\mathrm{Tr}(\bm U^\top \bm A\bm V)|,
+        \end{align*}
+        where $\bm I_k$ is the rank-$k$ identity matrix, $\bm U$ is a $m\times k$ matrix, and $\bm V$ is a $n\times k$ matrix.
+        \item [(b)] (2') Prove that, for any $k\in[n]$ and $\bm A,\bm B\in\mathbb{R}^{m\times n}$ ($m\geq n$), $\sum_{i=1}^k\sigma_i(\bm A+\bm B)\leq\sum_{i=1}^k\sigma_i(\bm A)+\sum_{i=1}^k\sigma_i(\bm B)$.
+    \end{itemize}
+\end{itemize}
+\end{problem}
+
+
+\begin{problem}{5 (5')}
+Use power method presented in section 3.7.1 of textbook to compute the largest $10$ singular values of the random matrix $\bm A$ generated using NumPy as follows.
+
+\begin{algorithm}[htbp]
+    \caption{Generate the matrix}
+    np.random.seed(20241025)\qquad  // Set random seed.
+
+    A = np.random.randn(2000, 1000)
+\end{algorithm}
+
+Write down the singular values and submit the code as an attachment. You could use any functions provided by the NumPy package. If you use other programming languages or other packages to solve this problem, please generate the random matrix in a similar fashion.
+\end{problem}
+
+
+\begin{problem}{6 (5')}
+Consider a labeling $f:\{0,1\}^d\to \{-1,+1\}$: $f(x_1,x_2,x_3,\cdots,x_d):=(-1)^{\sum_{i=1}^d x_i}$. Is $\{0,1\}^d$ linearly separable if it is labeled by $f$? Prove your result.
+\end{problem}
+
+
+\begin{problem}{7 (20')} Consider function $K(\bm x,\bm y)=(1+a\bm x^\top \bm y)^2$ where $\bm x,\bm y\in\mathbb{R}^n$ and $a\in\mathbb{R}$ is a constant.  
+\begin{itemize}
+    \item [(1)] (6') Find out all possible $a\in\mathbb{R}$, such that $K(\bm x,\bm y)$ is a kernel function. Prove your result.
+    \item [(2)] (14') Suppose $a\ne 0$ and $K(\bm x,\bm y)$ is a kernel function, i.e., there exists $\bm \varphi:\mathbb{R}^n\to\mathbb{R}^m$ such that $K(\bm x,\bm y)=\langle \bm \varphi(\bm x),\bm \varphi(\bm y)\rangle$. Prove that, for any $\bm \varphi$ satisfying the conditions above, $m\geq \frac{n(n+3)}{2}+1$.
+    \item [] \textit{[Hint: Consider matrix $M_{ij}=K(\bm x_i,\bm x_j)\;(1\leq i,j\leq r)$, then $\bm M$ is a semi-definite matrix and $\bm M=\bm G^\top \bm G$ where $\bm G=(\bm \varphi(\bm x_1)\mid\cdots\mid\bm \varphi(\bm x_r))$. Take specific $\bm x_1,\cdots,\bm x_r\in\mathbb{R}^n$ and consider the rank of $\bm M$. You may find the basic results in linear algebra that $\mathrm{rk}(\bm G^\top \bm G)=\mathrm{rk}(\bm G)$ useful.]}
+\end{itemize}
+\end{problem}
+
+
+
+\end{document}
