@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper]{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage{amsmath,amsfonts,graphicx,amssymb,bm,amsthm}
+%\usepackage{algorithm,algorithmicx}
+\usepackage[ruled]{algorithm2e}
+\usepackage[noend]{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{arrows,automata}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=blue,      
+	urlcolor=blue,
+	citecolor=cyan,
+}			
+
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.5 em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\hfill$\blacktriangleleft$\end{trivlist}}
+\newenvironment{answer}[1][Answer]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}\hskip \labelsep]}{\hfill$\lhd$\end{trivlist}}
+
+\newcommand\E{\mathbb{E}}
+\newcommand\per{\mathrm{per}}
+
+
+\title{Homework \#4}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{Peking University}
+\chead{}
+\rhead{Mathematical Foundations for the Information Age, 2024 Fall}
+
+\begin{center}
+    {\LARGE \bf Homework \#4}\\
+    {Due: 2024-12-8 23:59 \quad$|$\quad 7 Problems, 100 Pts}\\
+    {Name: XXX, ID: XXX}            % Write down your name and ID here.
+\end{center}
+
+
+
+\begin{problem}{1 (10')} Find out and prove the VC-dimension of the hypothesis class $\mathcal{H}$ on instance space $\mathbb{R}^2$ where
+\begin{align*}
+    \mathcal{H}=\left\{\left\{\bm x=(x_1,x_2)\mid x_1\geq c_1, x_2\geq c_2\right\}\mid \bm c=(c_1,c_2)\right\}.
+\end{align*}
+\end{problem}
+
+
+\begin{problem}{2 (10')} Find out and prove the VC-dimension of the hypothesis class $\mathcal{H}_n$ on instance space $\mathbb{R}$ where
+    \begin{align*}
+        \mathcal{H}_n=\left\{\left\{x|c_0+c_1x+c_2x^2+...+c_nx^n>0\right\}\mid c_0,c_1,...,c_n\in\mathbb{R}\right\}.
+    \end{align*}
+    Express the answer as a function of $n$.
+\end{problem}
+
+
+\begin{problem}{3 (16')} Find out and prove the VC-dimension of the hypothesis class $\mathcal{H}_n$ on instance space $\mathbb{R}^2$ where
+\begin{align*}
+    \mathcal{H}_n=\left\{\{\bm x = (x_1, x_2)\mid \forall i\in [n], \; a_ix_1 + b_ix_2 + c_i \geq 0\} \mid a_1, \cdots, a_n, b_1, \cdots, b_n, c_1, \cdots, c_n\in \mathbb{R}\right\}.
+\end{align*}
+Express the answer as a function of $n$.
+\end{problem}
+
+
+\begin{problem}{4 (16')}
+Find out and prove the VC-dimension of the hypothesis class $\mathcal{H}_n$ on instance space $\mathbb{R}^n$ ($n\geq 2$) where
+\begin{align*}
+\mathcal{H}_n=\left\{\left\{\bm x\in\mathbb{R}^n\mid \|\bm x-\bm c\|_2\leq r\right\}\mid \bm c\in\mathbb{R}^n, r\geq 0\right\}.
+\end{align*}
+Express the answer as a function of $n$.
+\end{problem}
+
+
+\begin{problem}{5 (16')}
+Find out and prove the VC-dimension of the hypothesis class $\mathcal{H}_n$ on instance space $\{0,1\}^n$ ($n\geq 1$) where
+\begin{align*}
+    \mathcal{H}_n=\{\{\bm x\in \{0,1\}^n \mid f_S(\bm x)=-1\}\mid S\subseteq \{1,2,\cdots,n\}\}.
+\end{align*}
+Here, $f_S(\bm x): \{0,1\}^n\to\{-1,+1\}$ is defined as
+\begin{align*}
+    f_S(\bm x) := \begin{cases}
+        -1,  & S = \varnothing; \\ 
+        (-1)^{\prod_{j\in S}x_j}, &  S \ne \varnothing.
+    \end{cases}
+\end{align*}
+Express the answer as a function of $n$.
+\end{problem}
+
+
+\begin{problem}{6 (14')} The shatter function $\pi_\mathcal{H}(n)$ is the maximum number of subsets of any set $A$ of size $n$ that can be expressed as $A\cap h$ for $h\in \mathcal{H}$. Let $\mathcal{H}_1$ and $\mathcal{H}_2$ be two hypothesis classes and $\mathcal{H}=\{h_1\cap h_2\mid h_1\in \mathcal{H}_1,h_2\in \mathcal{H}_2\}$. Recall that we have proved $\pi_\mathcal{H}(n)\leq\pi_{\mathcal{H}_1}(n)\pi_{\mathcal{H}_2}(n)$ in class. 
+
+\begin{itemize}
+    \item [(1)] (6') Recall the Sauer's lemma we have learned in class. Sauer's lemma tells that for a hypothesis class $\mathcal{H}$ with VC-dimension $d$, $\pi_\mathcal{H}(m)\leq\sum_{i=0}^d\binom{m}{i}$. Prove that $\sum_{i=0}^d\binom{m}{i}\leq\left(\frac{\mathrm{e}m}{d}\right)^d$ when $m\geq d$.
+    \item [(2)] (8') For a hypothesis class $\mathcal{H}$ with VC-dimension $d$, define the hypothesis class $\mathcal{H}^k$ ($k\geq 2$) as
+    \begin{align*}
+        \mathcal{H}^k=\left\{\bigcap_{i=1}^k h_i\;\big|\; h_i\in \mathcal{H}\right\}.
+    \end{align*}
+    Prove that, the VC dimension of $\mathcal{H}^k$ is no more than $7dk\ln k$. You may use the assertions above. ($\ln 2\approx0.693,\;\mathrm{e}\approx2.718,\;\ln 7\approx 1.946,\;\ln\ln 2\approx-0.367$)
+\end{itemize}
+\end{problem}
+
+
+\begin{problem}{7 (18')} Recall online learning and the Halving Algorithm we have introduced in class.
+
+\textbf{Problem setting:} There are $N$ experts. Suppose that we have access to the predictions of $N$ experts. At each time $t=1,2,\cdots,T$, we observe the experts' predictions $f_{1,t},f_{2,t},\cdots,f_{N,t}\in\left\{0,1\right\}$ and predict $p_t\in\left\{0,1\right\}$. We then observe the outcome $y_t\in\left\{0,1\right\}$ and suffer loss $\mathbf{1}_{p_t\neq y_t}$. Suppose $\exists j$ such that $f_{j,t}=y_t$ for all $t$.
+
+\textbf{Halving Algorithm:} Every time, we eliminate experts who make mistakes. That is, initially $C_1=[N]$ and $C_t=C_{t-1}\cap\left\{i|f_{i,t-1}=y_{t-1}\right\}$. Let $r_t$ be the fraction of experts in $C_t$ predicting $1$. We predict $p_t$ as $\mathbf{1}_{r_t\geq 1/2}$.
+
+In class we showed that the number of mistakes made by Halving algorithm is upper bounded by $\log_2 N$. Here, we consider a randomized version of Halving Algorithm.
+
+\textbf{Randomized Halving Algorithm:} Define $C_1=[N]$ and $C_t=C_{t-1}\cap\left\{i|f_{i,t-1}=y_{t-1}\right\}$. Let $r_t$ be the fraction of experts in $C_t$ predicting $1$. We predict $p_t=1$ with probability
+\begin{align*}
+    \min\left\{1,\frac{1}{2}\log_2\frac{1}{1-r_t}\right\},
+\end{align*}
+and $p_t=0$ otherwise.
+
+Prove that, the expected number of mistakes made by Randomized Halving Algorithm is at most $\frac{1}{2}\log_2 N$.
+
+\textit{[Hint: Consider potential function $\Phi_t=\log_2(|C_t|)$.]}
+\end{problem}
+
+
+
+\end{document}
