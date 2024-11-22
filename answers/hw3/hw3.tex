@@ -58,7 +58,7 @@
 \begin{center}
     {\LARGE \bf Homework \#3}\\
     {Due: 2024-11-17 23:59 \quad$|$\quad 7 Problems, 100 Pts}\\
-    {Name: XXX, ID: XXX}            % Write down your name and ID here.
+    {Name: 徐靖, ID: 2200012917}            % Write down your name and ID here.
 \end{center}
 
 
@@ -67,6 +67,17 @@
 Suppose that the singular value decomposition of square matrix $\bm A$ is $\bm A = \bm U \bm \Sigma \bm V^\top$. Find out the maximum value of $\|\bm A - \bm W\|_F$ where $\bm W$ is an orthogonal matrix.
 \end{problem}
 
+\begin{answer}
+    $\forall W$, let $W'=-U^\top WV$. Then $W$ is an orthogonal matrix, which is equivalent to $W'$ being an orthogonal matrix. And we have
+$$\|A-W\|_F=\|U\Sigma V^\top+UW'V\|_F=\|\Sigma+W'\|_F= \| \Sigma W'^\top+I\|_F$$
+Assume $\Sigma = \text{diag} \{\sigma_1,\sigma_2,\dots,\sigma_n\}, W'=\begin{pmatrix} w_1 & w_2 & \cdots & w_n \end{pmatrix}, w_i = \begin{pmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{pmatrix}^\top$.
+Let $\delta_{ij}= 1 (i=j) \text{ or } -1 (i\neq j)$ is  Kronecker delta.  Then we have
+$$\begin{align*}\|A-W\|_F &= \sum_{i=1}^n\sum_{j=1}^n (\sigma_ia_{ij}+\delta_{ij})^2\\&=n+\sum_{i=1}^n{\sigma_i^2}+2\sum_{i=1}^n\sigma_ia_{ii}\end{align*}$$
+Given that $a_{ii} \leq \sqrt{|w_i|} =1$, thus $\|A-W\|_F \leq n+\sum_{i=1}^n{\sigma_i^2}+2\sum_{i=1}^n\sigma_i$ . The inequality is equal when $W'=I$
+
+In conclusion,
+$$\max \|A-W\|_F =  n+\text{tr}(\Sigma^2+2\Sigma) $$
+\end{answer}
 
 \begin{problem}{2 (12')} Suppose $\bm A=\sum_{i=1}^r \sigma_i \bm u_i \bm v_i^\top$ is the SVD of matrix $\bm A$ where $\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r>0$ and $r\geq 1$. Answer the following problems. You don't need to prove your result.
     \begin{itemize}
@@ -92,7 +103,15 @@ Suppose that the singular value decomposition of square matrix $\bm A$ is $\bm A
         If so, write down the value of minimum $\alpha$ as well.
     \end{itemize}
 \end{problem}
-
+\begin{answer}
+    \begin{itemize}
+        \item
+        \item [(1)] $\alpha_{\min}=0$
+        \item [(2)] $\neg \exists \alpha$
+        \item [(3)] $\alpha_{\min}=-\frac{1}{2}$
+        \item [(4)] $\alpha_{\min}=0$
+    \end{itemize}
+\end{answer}
 
 \begin{problem}{3 (26')}
 Recall the Johnson-Lindenstrauss lemma we learned in class. 
@@ -137,7 +156,36 @@ In this problem, we are going to use Johnson-Lindenstrauss lemma to prove all bi
     Prove your result.
 \end{itemize}
 \end{problem}
-
+\begin{answer}
+    \begin{itemize}
+        \item [(1)] Note that 
+        $$\|\Pi x\|\leq (1+\epsilon) \|x\| \Rightarrow \|\Pi x\|^2\leq (1+3\epsilon)\|x\|$$
+        So we have $k\ge \frac{c_1\ln n}{9\epsilon^2}$, let $c_2 = \frac{c_1}{9}$ then the proof is complete.
+        \item [(2)] In fact,
+        $$\begin{align*}|x_i^\top x_j-x_i^\top Q^\top Qx_j|&=\frac{1}{2}|\|x_i\|^2+\|x_j\|^2-\|x_i-x_j\|^2-\|Qx_i\|^2-\|Qx_j\|^2+\|Qx_i-Qx_j\|^2|\\&\leq \frac{1}{2}|\|Qx_i\|^2-\|x_i\|^2|+\frac{1}{2}|\|Qx_j\|^2-\|x_j\|^2|+\frac{1}{2}|\|Qx_i-Qx_j\|^2-\|x_i-x_j\|^2|\\&\leq \frac{\epsilon}{2}(\|x_i\|^2+\|x_j\|^2+\|x_i-x_j\|^2)\\&=\epsilon (\|x_i\|^2+\|x_j\|^2-x_i^\top x_j)\end{align*}$$
+        \item [(3)] 
+        \begin{itemize}
+            \item [(a)] Note that, 
+$$\|X\|_2=\underset{\|a\|_2=1}{\max}\|Xa\|$$
+If $|X_{ij}|=\|X\|_{\max}>\|X\|_2$, then let $a=e_j$, we have $\|Xa\|_2=\sqrt{\sum_{i\in m}X_{ij}^2}\ge |X_{ij}|>\|X\|_2$. This contradicts.
+            \item [(b)] $X=U_X\Sigma V_X^\top$. Let $U=\Sigma^{\frac{1}{2}}U_X^\top$, $\Sigma^{\frac{1}{2}}V_X^\top$.
+Then $X=U^\top V$, $\|u_i\|_2^2=\|Ue_i\|_2^2=(U_x^\top e_i)^\top\Sigma (U_x^\top e_i)\leq \sigma_1$ for $\|U_i^\top e_i\|_2=1$. Similarly $\|v_j\|_2^2\leq \sigma_1$
+        \end{itemize}
+        \item [(4)]
+        By using 3.(b), $X=U^\top V,X_{ij}=U_i^\top V_j$. Let $Q$ be the random projection matrix. $\tilde{u_i}=Qu_i,\tilde{v_i}=Qv_i, Y_{ij}=\tilde{u_i}^\top\tilde{v_k}$
+        Then there are $m+n$ vectors $(u_1,\dots,u_m,v_i,\dots,v_n)$, and we have
+        $$|X_{ij}-Y_{ij}|\leq \epsilon (\|u_i\|^2+\|v_j\|^2-u_i^\top v_j)\leq \epsilon (\|u_i\|^2+\|v_j\|^2+\|u_i\|\|v_j\|)\leq 3\epsilon \|X\|_2$$
+        Proof completed.
+        \item [(5)]
+        Let, $y=(a,b)^\top$, then we have $$Y=yy^\top = \begin{pmatrix}
+            a^2 & ab\\ab & b^2
+        \end{pmatrix}$$
+        And $$\|X-Y\|_{\max} = \left\|\begin{pmatrix}
+            1-a^2 & ab\\ab &1-b^2
+        \end{pmatrix}\right\|_{\max} = \max{|1-a^2|,|1-b^2|,|ab|}$$
+        Thus $\min \|X-Y\|_{\max} = \frac{1}{2}$
+    \end{itemize}
+\end{answer}
 
 \begin{problem}{4 (22')}~
 \begin{itemize}
@@ -157,6 +205,60 @@ In this problem, we are going to use Johnson-Lindenstrauss lemma to prove all bi
     \end{itemize}
 \end{itemize}
 \end{problem}
+\begin{answer}
+\\
+\begin{itemize}
+
+    \item [(1)]
+    $\underset{W}{\max}\|W^\top S\|_F = \sqrt{s_1^2+s_2^2+\cdots+s_r^2}$. This upper bound can be reached with $W=(w_1,w_2,\dots,w_r)$, where $w_i$ is the column vector with $1$ on the i-th dimension and $0$ on the rest. The proof of $\underset{W}{\max}\|W^\top S\|_F \leq \sqrt{s_1^2+s_2^2+\cdots+s_r^2}$ is as follows.
+    
+$\forall W$, construct orthgonal matrix $U\in \mathbb R^{n\times n}$ such that the first $r$ column of $U$ is the same to $W$.
+
+Consider matrix $R$ which satisfies $R_{ij}=U_{ij}^2$. Since $U$ is orthogonal, the row sums and column sums of $U$ are all 1
+
+Apply Birkhoff's Theorem on $R$, then we have $R=\sum_{i=1}^k\theta_iP_i$, where $\sum_{i=1}^k \theta_i=1$
+
+$\forall$ permutation matrix $P$, suppose that $P_{i,q_i}=1$ (then $q_i$ is a permutaion of $1,\dots,n$), we have $\sum_{i=1}^r\sum_{j=1}^ns_j^2P_{ij}=\sum_{i=1}^rs_{q_i}^2\leq \sum_{i=1}^r s_i^2$
+Thus,
+$$\begin{align*}\|W^\top S\|_F^2&=\sum_{i=1}^r\sum_{j=1}^ns_j^2W_{ij}^2=\sum_{i=1}^r\sum_{j=1}^ns_j^2R_{ij}=\sum_{i=1}^r\sum_{j=1}^ns_j^2(\sum_{l=1}^k\theta_l(P_i)_{ij})\\&=\sum_{l=1}^k \theta_l\sum_{i=1}^r\sum_{j=1}^ns_j^2(P_i)_{ij}\leq \sum_{l=1}^k\theta_l\sum_{i=1}^rs_i^2=\sum_{i=1}^rs_i^2\end{align*}$$
+\item [(2)]
+    \begin{itemize}
+
+        \item [(a)]
+        Consider the SVD of $A$ as $A=U_0 D V_0$, where $U_0 \in \mathbb{R}^{m \times m}, D \in \mathbb{R}^{m \times n}, V_0 \in \mathbb{R}^{n \times n}$ and $U_0^{\top} U_0=I_m, V_0^{\top} V_0=I_n, D_{i i}=\sigma_i$.
+
+For all $k$ and $U \in \mathbb{R}^{m \times k}, V \in \mathbb{R}^{n \times k}$ that $U^{\top} U=V^{\top} V=I_k$, we have $\left(U_0^{\top} U\right)^{\top}\left(U_0^{\top} U\right)=U^{\top} U_0 U_0^{\top} U=U^{\top} I_m U=I_k$, as well as $\left(V_0 V\right)^{\top}\left(V_0 V\right)=I_k$.
+
+We rename these two matrix as $L=U_0^{\top} U$ and $R=V_0 V$. As $L^{\top} L=R^{\top} R=I_k$, we can see that all the column vectors of $L$ and $R$ are unit vectors, as well as all the row vectors are not longer than 1. (since you can always extend $L$ and $R$ to a orthogonal matrix, afterward the length of all the row vectors will be 1.)
+
+$$\begin{aligned}\operatorname{tr}\left(U^{\top} A V\right)&=\operatorname{tr}\left(U^{\top} U_0 D V_0 V\right)=\operatorname{tr}\left(\left(U_0^{\top} U\right)^{\top} D V_0 V\right)=\operatorname{tr}\left(L^{\top} D R\right)\\ &=\sum_{i=1}^n \sum_{j=1}^k L_{j i}^{\top} \sigma_i R_{i j}=\sum_{i=1}^n \sigma_i \sum_{j=1}^k L_{i j} R_{i j}\end{aligned}$$
+Let $s_i=\sum_{j=1}^k L_{i j} R_{i j}$, and we have the following constraints on $s$ :
+\begin{itemize}
+    \item for all $i, s_i \leq 1$.
+This is because that $s_i=\sum_{j=1}^k L_{i j} R_{i j}$ is the inner product of two row vectors whose length is not more than 1.
+    \item for all $j, \sum_{j=1}^i s_j \leq k$.
+This is because that $\sum_{j=1}^i s_j=\sum_{j=1}^i \sum_{l=1}^k L_{j l} R_{j l}=\sum_{l=1}^k \sum_{j=1}^i L_{j l} R_{j l}$ is the sum of inner products on the first $i$ dimensions of $k$ pairs of column vectors whose length is not more than 1.
+\end{itemize}
+
+Using Abel transformation (assume that $\sigma_{n+1}=0$ ), we have:
+$\operatorname{tr}\left(U^{\top} A V\right)=\sum_{i=1}^n \sigma_i s_i=\sum_{i=1}^n\left(\sigma_i-\sigma_{i+1}\right) t_i$, where $t_i=\sum_{j=1}^i s_j \leq \min \{i, k\}$ (because $s_i \leq 1$ and $\sum_{j=1}^i s_j \leq k$ ) As $\sigma_i-\sigma_{i+1} \geq 0$ holds for all $i$ :
+$$\operatorname{tr}\left(U^{\top} A V\right)=\sum_{i=1}^n\left(\sigma_i-\sigma_{i+1}\right) t_i \leq \sum_{i=1}^k\left(\sigma_i-\sigma_{i+1}\right) i+\sum_{i=k+1}^n\left(\sigma_i-\sigma_{i+1}\right) k=\sum_{i=1}^k \sigma_i$$
+Symmetrically we can prove that $\operatorname{tr}\left(U^{\top} A V\right) \geq-\sum_{i=1}^n \sigma_i$, thus $\left|\operatorname{tr}\left(U^{\top} A V\right)\right| \leq \sum_{i=1}^n \sigma_i$.
+Construct $U^*=U_0^{\top} I_{m k}$ and $V^*=V_0^{\top} I_{n k}$ (where $I_{i j} \in \mathbb{R}^{i \times j}$ having only the main diagonal as 1 ), then we have $\operatorname{tr}\left(U^{* \top} A V^*\right)=\operatorname{tr}\left(I_{k m} D I_{n k}\right)=\sum_{i=1}^k \sigma_i$.
+So $\max \left|\operatorname{tr}\left(U^{\top} A V\right)\right|=\sum_{i=1}^k \sigma_i$.
+
+\item [(b)]
+ As a conclusion of 4.2(b), we instantly have
+ $$
+\begin{aligned}
+ \sum_{i=1}^k \sigma_i(A+B)&=\max _{U^{\top} U=V^{\top} V=I_k}\left|\operatorname{tr}\left(U^{\top}(A+B) V\right)\right|=\left|\operatorname{tr}\left(U^{* \top}(A+B) V^*\right)\right|\\&=\left|\operatorname{tr}\left(U^{* \top} A V^*\right)+\operatorname{tr}\left(U^{* \top} B V^*\right)\right| 
+ \leq\left|\operatorname{tr}\left(U^{* \top} AV^*\right)\right|+\left|\operatorname{tr}\left(U^{* \top} B V^*\right)\right|\\& \leq \max _{U^{\top} U=V^{\top} V=I_k}\left|\operatorname{tr}\left(U^{\top} A V\right)\right|+\max _{U^{\top} U=V^{\top} V=I_k}\left|\operatorname{tr}\left(U^{\top} B V\right)\right| \\
+& =\sum_{i=1}^k \sigma_i(A)+\sum_{i=1}^k \sigma_i(B) .
+\end{aligned}
+$$
+    \end{itemize} 
+\end{itemize}
+\end{answer}
 
 
 \begin{problem}{5 (5')}
@@ -171,12 +273,17 @@ Use power method presented in section 3.7.1 of textbook to compute the largest $
 
 Write down the singular values and submit the code as an attachment. You could use any functions provided by the NumPy package. If you use other programming languages or other packages to solve this problem, please generate the random matrix in a similar fashion.
 \end{problem}
-
+\begin{answer}
+    75.72 75.54 75.4  74.95 74.74 74.39 74.25 74.21 73.91 73.85
+\end{answer}
 
 \begin{problem}{6 (5')}
 Consider a labeling $f:\{0,1\}^d\to \{-1,+1\}$: $f(x_1,x_2,x_3,\cdots,x_d):=(-1)^{\sum_{i=1}^d x_i}$. Is $\{0,1\}^d$ linearly separable if it is labeled by $f$? Prove your result.
 \end{problem}
 
+\begin{answer}
+    Obviously, it is not linearly separable. If it is linearly separable, then $\{0,1\}^2$ on the plane $x_3=x_4=\cdots=x_n=0$ is separated by the straight line projected by the hyperplane on the plane, and among these four points, $(0, 0),(1,1)$ has the same label, and $(0,1),(1,0)$ has the opposite label to the first two. Therefore, these four points are not linearly separable. This contradicts the assumption.
+\end{answer}
 
 \begin{problem}{7 (20')} Consider function $K(\bm x,\bm y)=(1+a\bm x^\top \bm y)^2$ where $\bm x,\bm y\in\mathbb{R}^n$ and $a\in\mathbb{R}$ is a constant.  
 \begin{itemize}
@@ -186,6 +293,59 @@ Consider a labeling $f:\{0,1\}^d\to \{-1,+1\}$: $f(x_1,x_2,x_3,\cdots,x_d):=(-1)
 \end{itemize}
 \end{problem}
 
+\begin{answer}
+    \item [(1)]
+    $\forall a>0, $ let $\varphi(\boldsymbol{x}) = (1,\sqrt{2a}x_1,\dots,\sqrt{2a}x_n,ax_1^2,\dots,ax_n^2,\sqrt{2}ax_1x_2,\dots,\sqrt{2}ax_1x_n,\dots,\sqrt{2}ax_{n-1}x_n)$
+Then we have 
+$$\varphi(\boldsymbol{x})\cdot\varphi(\boldsymbol{y}) = 1+\sum_{i=1}^n(2ax_iy_i+a^2x_i^2y_i^2)+\sum_{1\leq i< j\leq n}2a^2x_iy_ix_jy_j = K(\boldsymbol{x},\boldsymbol{y})$$
+In this case, $K$ is the kernel function.\\
+For $a<0$ ,let $x_1 = (1,0,\dots,,0),x_2 = (0,1,0,\dots,0)$, then we get kernel matrix based on $\{x_1,x_2\}$ :
+$$\begin{bmatrix}0&1\\1&0\end{bmatrix}$$
+It is not semi-definite. Thus $K$ is not a kernel function.
+The case $a = 0$ is trivial.
+    \item [(2)]
+Construct the following vectors: \( a_0 = (0, \dots, 0) \), \( a_{i+} = (0, \dots, 1, \dots, 0) \) (only the \( i \)-th position is \( 1 \)), \( a_{i-} = (0, \dots, -1, \dots, 0) \) (only the \( i \)-th position is \( -1 \)), and \( a_{(i,j)} = (0, \dots, 1, \dots, 1, \dots, 0) \) (only the \( i \)-th and \( j \)-th positions are \( 1 \), where \( i \neq j \); tuples \( (i, j) \) and \( (j, i) \) are equivalent). 
 
+There are \( l = \frac{1}{2}n^2 + \frac{3}{2}n + 1 \) such vectors. Consider an \( l \times l \) matrix \( M \), where \( M_{i,j} = K(a_i, a_j) \) (\( i, j \) are indices of the \( l \) vectors). It is easy to see that \( M \) is a real symmetric matrix. Define \( m_i \) as the row vector corresponding to the \( i \)-th row.
+
+Noting that \( m_0 = (1, \dots, 1) \), the first column of \( M \) is all ones. Subtracting \( m_0 \) from every row except the first, the first column of \( M \) becomes \( [1, 0, \dots, 0]^\top \). Denote the resulting lower-right \((l-1) \times (l-1)\) submatrix as \( M' \). Then:
+\[
+\mathrm{rk}(M) = \mathrm{rk}(M') + 1,
+\]
+where \( M'_{i,j} = K(a_i, a_j) - 1 \).
+
+Next, consider the vector \( M'_{(i,j)} - M'_{i} - M'_{j} \). Let \( f(x) \) denote the \( x \)-th entry of this vector. For \( k, h \in [n] \setminus \{i, j\} \), we have:
+\[
+\begin{aligned}
+    f(k^+) &= f(k^-) = (1-1) - (1-1) - (1-1) = 0, \\
+    f(i^+) &= (4-1) - (4-1) - (1-1) = 0, \\
+    f(i^-) &= (0-1) - (0-1) - (1-1) = 0, \\
+    f((k, l)) &= (1-1) - (1-1) - (1-1) = 0, \\
+    f((i, k)) &= (4-1) - (4-1) - (1-1) = 0, \\
+    f((i, j)) &= (9-1) - (4-1) - (4-1) = 2.
+\end{aligned}
+\]
+In other words, \( M'_{(i,j)} - M'_{i} - M'_{j} \) is zero everywhere except at the \( (i, j) \)-th position, where it equals \( 2 \). Thus, removing the \( (i, j) \)-th row and column from \( M' \) reduces its rank by exactly 1.
+
+Now, consider the top-left \( 2n \times 2n \) submatrix \( M'' \) of \( M' \). After simple row and column exchanges, we observe:
+\[
+|M''| = 
+\begin{bmatrix}
+    3 & -1 \\
+    -1 & 3
+\end{bmatrix}^n > 0.
+\]
+Therefore, \( M'' \) has full rank, and \( M \) is full rank.
+
+Finally, consider a matrix \( G = \langle \varphi(a_0) \mid \cdots \mid \varphi(a_{(n-1,n)}) \rangle \), with \( G \) having \( l \) columns and \( m \) rows. It is easy to verify that \( M = G^\top G \). Consequently:
+\[
+\mathrm{rk}(G) = \mathrm{rk}(G^\top G) = \mathrm{rk}(M) = l.
+\]
+Thus:
+\[
+m \geq \mathrm{rk}(G) = \frac{1}{2}n^2 + \frac{3}{2}n + 1.
+\]
+
+\end{answer}
 
 \end{document}
