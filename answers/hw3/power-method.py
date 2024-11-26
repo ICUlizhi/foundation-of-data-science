@@ -28,7 +28,7 @@ def Power_method(A, k, Iterations=100):
 
 
 k = 10
-i = 1000
+i = 10000
 singular_values = Power_method(A, k, i)
 print ("迭代次数：", i)
 print(f"幂方法前{k}个奇异值：") # 精确到两位小数
