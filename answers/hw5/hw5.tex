@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper]{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage{amsmath,amsfonts,graphicx,amssymb,bm,amsthm}
+%\usepackage{algorithm,algorithmicx}
+\usepackage[ruled]{algorithm2e}
+\usepackage[noend]{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{arrows,automata}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=blue,      
+	urlcolor=blue,
+	citecolor=cyan,
+}			
+
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.5 em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\hfill$\blacktriangleleft$\end{trivlist}}
+\newenvironment{answer}[1][Answer]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}\hskip \labelsep]}{\hfill$\lhd$\end{trivlist}}
+
+\newcommand\E{\mathbb{E}}
+\newcommand\per{\mathrm{per}}
+
+
+\title{Homework \#5}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{Peking University}
+\chead{}
+\rhead{Mathematical Foundations for the Information Age, 2024 Fall}
+
+\begin{center}
+    {\LARGE \bf Homework \#5}\\
+    {Due: 2024-12-22 23:59 \quad$|$\quad 7 Problems, 100 Pts}\\
+    {Name: 徐靖, ID: 2200012917}            % Write down your name and ID here.
+\end{center}
+
+
+
+\begin{problem}{1 (16')} Consider the following randomized online learning algorithm for expert advice problem.
+    \begin{algorithm}[htbp]
+        \caption{Randomized online learning algorithm for expert advice}
+        Set a constant $\eta>0$, the number of experts $N$
+    
+        $\bm{L}_0\gets 0^N$ \hfill{$\triangleright$ Cumulative loss vector.}
+    
+        \For{$t=1,2,\cdots,T$}{
+            $W(t)=\sum_i\exp(-\eta\bm{L}_{t-1}(i))$ \hfill{$\triangleright$ Normalization coefficient.}
+    
+            Select the $i$-th expert with probability $\bm p_t(i)=\frac{\exp(-\eta\bm{L}_{t-1}(i))}{W(t)}$
+    
+            Observe the loss vector $\bm{l}_t\in[0,1]^N$ for each expert    \hfill{$\triangleright$ The loss is guaranteed in $[0,1]$.}
+    
+            Update the cumulative loss $\bm{L}_t\gets\bm{L}_{t-1}+\bm{l}_t$
+        }
+    \end{algorithm}
+    
+    The expected loss is $\sum_{t=1}^T\bm{p}_t^\top\bm{l}_t$. 
+    \begin{itemize}
+        \item [(1)] (7') Prove that, 
+        \begin{align*}
+            \frac{W(t+1)}{W(t)}=\bm{p}_t^\top\exp(-\eta\bm{l}_t).
+        \end{align*}
+        \item [(2)] (9') Prove the following upper bound for expected loss:
+        \begin{align*}
+            \sum_{t=1}^T\bm{p}_t^\top\bm{l}_t-\bm L_T(i)\leq\frac{\ln N}{\eta}+T\eta
+        \end{align*}
+        for any $i\in[N]$.
+        \item [] \textit{[Hint: Consider the potential function $\Phi_t=\frac{1}{\eta}\ln(W(t))$. You may find the following inequality useful: $\mathrm{e}^{-x}\leq 1-x+x^2,x>0$.]}
+    \end{itemize}
+    \end{problem}
+
+\begin{answer}
+\begin{itemize}
+    \item [(1)]
+Actually,
+$$\frac{W(t+1)}{W(t)} = \frac{\sum_i\exp(-\eta\bm{L}_{t}(i))}{W(t)} = \sum_i \frac{\exp(-\eta L_{t-1}(i))}{W(t)}\cdot\exp(-\eta l_t) = \bm{p}_t^\top\exp(-\eta\bm{l}_t)$$
+    \item [(2)]
+Given that, 
+$$\forall i, \exp(-\eta \bm L_{t}(i))\leq W(T+1) = W(1)\prod_{t=1}^{T} \bm{p}_t^\top\exp(-\eta\bm{l}_t) \leq W(1)\prod_{t=1}^{T} \sum_{i=1}^n\bm{p}_t(i) (1-\eta\bm{l}_t(i)+\eta^2\bm{l}_t^2(i))$$
+Take the logarithm of both sides, we have,
+$$-\eta \bm L_{t}(i)\leq \ln N +\sum_{t=1}^{T}\ln \left(1-\bm{p}_t^\top\bm{l}_t\eta+\sum_{i=1}^n\bm p_t(i)\bm l_t^2(i)\eta^2\right)\leq \ln N+\sum_{t=1}^{T} -\bm{p}_t^\top\bm{l}_t\eta+\eta^2$$
+After sorting, we found,
+$$\sum_{t=1}^T\bm{p}_t^\top\bm{l}_t-\bm L_T(i)\leq\frac{\ln N}{\eta}+T\eta$$
+\end{itemize}        
+\end{answer}
+\begin{problem}{2 (15')} 
+Consider the following boosting algorithm we learned in class. 
+
+\begin{algorithm}[H]
+    \caption{Boosting algorithm}
+    \KwIn{Number of iterations $M$ (where $M$ is odd), a sample $S$ of $n$ labeled examples $\bm x_1,\cdots,\bm x_n$ with labels $y_1,\cdots,y_n$, a $\gamma$-weak ($\gamma>0$) learner (i.e., an algorithm that given $n$ labeled examples and a non-negative weight $\bm w\in\mathbb{R}^n$, gives an hypothesis with at least $\frac12+\gamma$ accuracy on the weight $\bm w$).}
+
+    $\bm w_1\gets (1,1,\cdots,1)$ \hfill{$\triangleright$ Initialize each example $\bm x_i$ to have a weight $\bm w_{1}(i)=1$.}
+
+    \For{$t=1,2,\cdots,M$}{
+        Call the $\gamma$-weak learner on the sample $S$ with weight $\bm w_t$ to get the hypothesis $h_t$.
+
+        \For{$i=1,2,\cdots,n$}{
+            \eIf{$\bm h_t(x_i)\ne y_i$}{$\bm w_{t+1}(i)\gets \bm w_t(i)\cdot\frac{\frac12+\gamma}{\frac12-\gamma}$}{$\bm w_{t+1}(i)=\bm w_t(i)$}
+        }
+    }
+
+    \KwOut{The classifier $\mathrm{Maj}(h_1,\cdots,h_M)$.}
+\end{algorithm}
+
+Assume hypothesis $h_t$ has error rate $\beta_t$ on the weighted sample $(S,\bm w_t)$.
+\begin{itemize}
+    \item [(1)] (10') Suppose $\beta_t$ is much less than $\frac12-\gamma$. Then, after the booster multiples the weight of misclassified examples by $\alpha=\frac{\frac{1}{2}+\gamma}{\frac{1}{2}-\gamma}$, hypothesis $h_t$ will still have error less than $\frac12-\gamma$ under the new weights. This means that $h_t$ could be given again to the booster (perhaps for several times in a row). Calculate, as a function of $\alpha$ and $\beta_t$, how many times in a row $h_t$ could be given to the booster before its error rate rises to above $\frac12-\gamma$. 
+    \item [(2)] (5') Modify the boosting algorithm in the following way: During the iteration, multiply the weight of each example that was misclassified by $h_t$ by $\alpha_t=\frac{1-\beta_t}{\beta_t}$, instead of $\alpha=\frac{\frac{1}{2}+\gamma}{\frac{1}{2}-\gamma}$. Prove that, $h_{t+1}\ne h_t$.
+\end{itemize}
+\end{problem}
+
+\begin{answer}
+\begin{itemize}
+    \item [(1)] Assume that $h_t$ is given to booster for $K$ rounds, then after this round, 
+    $$\beta_{t+K}>\frac{1}{2}-\gamma\ge \beta_{t+K-1}$$
+    And we find that for $k\in [K]$, we have:
+    $$\begin{align*}\beta_{t+k} &= \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t+k}(i)}{\sum_{h_{t}(x_i)\neq y_i} w_{t+k}(i)+\sum_{h_{t}(x_i) = y_i} w_{t+k}(i)} \\&= \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t+k}(i)\alpha}{\sum_{h_{t}(x_i)\neq y_i} w_{t+k-1}(i)\alpha+\sum_{h_{t}(x_i) = y_i} w_{t+k-1}(i)} \\&= \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha^k}{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha^{k}+\sum_{h_{t}(x_i) = y_i} w_{t}(i)}\end{align*}$$
+    On the other hand, 
+    $$\beta_t = \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)}{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)+\sum_{h_{t}(x_i) = y_i} w_{t}(i)}$$
+    Thus, 
+    $$\beta_{t+k} = \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha^k}{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha^{k}+\frac{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)}{\beta_t}-\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)} = \frac{\alpha^{k}}{\alpha^k+\frac{1}{\beta_t}-1}$$
+    Therefore, $K$ must satisfy:
+    $$\frac{1}{1+(\frac{1}{\beta_t}-1)\frac{1}{\alpha^{K}}}>\frac{1}{2}-\gamma\ge\frac{1}{1+(\frac{1}{\beta_t}-1)\frac{1}{\alpha^{K-1}}}$$
+    After sorting, we found,
+    $$K = \left[\log_{\alpha}\left(\frac{1}{\beta_t}-1\right)\right]+1$$
+    \item [(2)]
+    Assume $h_t$ has error rate $\beta'$ on the weighted sample $(S,w_{t+1})$. Then we have,
+$$\beta' = \frac{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha_t}{\sum_{h_{t}(x_i)\neq y_i} w_{t}(i)\alpha_t+\sum_{h_{t}(x_i) = y_i} w_{t}(i)} = \frac{\alpha_t}{\alpha_t+\frac{1}{\beta_t}-1} = \frac{1}{2}>\frac{1}{2}-\gamma$$
+    Thus $h_{t+1}\neq h_t$
+\end{itemize}
+\end{answer}
+
+\begin{problem}{3 (20')} 
+Given a stream of integers $a_1,a_2,\cdots$, where $a_i\in\{1,2,3,\cdots,m\}$. The integers arrive one by one in the stream, and the total number of elements $n$ is unknown in advance. 
+\begin{itemize}
+    \item [(1)] (5') Give an algorithm that will select a symbol uniformly at random from the stream. How much memory does your algorithm require?
+    \item [(2)] (5') Give an algorithm that will select a symbol with probability proportional to $a_i^2$. How much memory does your algorithm require?
+    \item [(3)] (10') Give an algorithm to draw a uniform sample set $X$ of size $t$ ($t\leq n$). Prove the correctness of your algorithm.
+\end{itemize}
+\end{problem}
+
+\begin{answer}
+\begin{itemize}
+    \item [(1)] Only one value is recorded. Each time $a_i$ is passed in, the recorded value is changed to $a_i$ with a probability of $\frac{1}{i}$. Finally, the recorded value is output. The distribution of this value is uniform on $\{a_i\}$. This algorithm uses $\log m$ of memory.
+    \item [(2)] Record two values, called $sum$ and $a$. Each time $a_i$ is passed in, first let $sum$ increase by $a_i^2$, then change $a$ to $a_i$ with a probability of $\frac{a_i^2}{sum}$, and finally output the recorded value. The distribution of this value meets the requirements of the question. This algorithm uses $\log n + \log m$ of memory.
+    \item [(3)]Following are the steps.
+    \begin{itemize}
+        \item Create an array $\{r_i\}_t$ and copy first $t$ items of stream to it.
+        \item Now one by one consider all items from $(t+1)$th item to $n$th item. 
+        \begin{itemize}
+            \item Generate a random number from $1$ to $i$ where $i$ is the index of the current item in stream. Let the generated random number is $j$.
+            \item If $j$ is in range $1$ to $k$, replace $r_j$ with $a_i$
+        \end{itemize}
+    \end{itemize}
+    Given that for $a_i$, let $A_j(i)$ donates $r_j$ had been replaced by $a_i$, $B_j(i)$ donates $r_j$ has never been replaced after $a_i$ passed. Thus the possibility for $a_i \in X$ is that:
+    $$\sum_{j=1}^t \mathbb P(A_j(i)B_j(i)) = \sum_{j=1}^t \mathbb P(A_j(i))\mathbb P(B_j(i)|A_j(i)) = \sum_{j=1}^t\frac{1}{i}\prod_{k=i+1}^n(1-\frac{1}{k}) = \frac{t}{n}$$
+    This algoritm is correct.
+\end{itemize}
+\end{answer}
+
+\begin{problem}{4 (10')}~
+\begin{itemize}
+    \item [(1)] (5') Construct an example in which the majority algorithm gives a false positive, i.e., stores a non-majority element at the end.
+    \item [(2)] (5') For any fixed $k \geq 2$, construct an example in which the frequent algorithm in fact does as badly as in the theorem, i.e., it under counts some item by $\frac{n}{k+1}$.
+\end{itemize}
+\end{problem}
+\begin{answer}
+\begin{itemize}
+    \item [(1)] $\{1,2,3\}$
+    \item [(2)] $\{1,2,\dots,k+2\}$
+\end{itemize}
+\end{answer}
+
+\begin{problem}{5 (15')}
+Let 
+\begin{align*}
+    H=\{h\mid h_{ab}:\{1,2,\cdots,m\}\rightarrow\{0,1,\cdots,M-1\}, a,b\in\{0,1,\cdots,M-1\}\}
+\end{align*}
+be a set of hash functions. Is $H$ always 2-universal under the following conditions? You don't need to prove your answer.
+\begin{itemize}
+    \item [(1)] (6') In this part, $h_{ab}(x)=ax+b\;(\mathrm{mod}\,M)$.
+    \begin{itemize}
+        \item [(a)] (3') $M=p^k$, where $p$ is a prime number greater than $m$ and $k>1$.
+        \item [(b)] (3') $M=pq$, where $p,q$ are prime numbers greater than $m$.
+    \end{itemize}
+    \item [(2)] (9') In this part, $m=M$ and $M$ is a prime number.
+    \begin{itemize}
+        \item [(a)] (3') $h_{ab}(x)=x^a+b\;(\mathrm{mod}\,M)$.
+        \item [(b)] (3') $h_{ab}(x)=a^x+b\;(\mathrm{mod}\,M)$.
+        \item [(c)] (3') $h_{ab}(x)=ax^3+b\;(\mathrm{mod}\,M)$.
+    \end{itemize}
+\end{itemize}
+\textit{[Hint: In this problem, proving your answer may be a little difficult, which may use Bézout's identity and Fermat's little theorem in number theory. So, you do not need to prove it. However, finding out the answer is not so difficult. For example, you can write a program to draw your conclusion. You don't need to show your code, either.]}
+\end{problem}
+\begin{answer}
+\begin{itemize}
+    \item [(1)] 
+    \begin{itemize}
+        \item [(a)] No. Let $x= 2p,y=p$, then $\mathbb P(h_{ab}(2p) = 1,h_{ab}(p) = 0) = 0$.
+        \item [(b)] No. Let $x= 2p,y=p$, then $\mathbb P(h_{ab}(2p) = 1,h_{ab}(p) = 0) = 0$.
+    \end{itemize}
+    \item [(2)] 
+    \begin{itemize}
+        \item [(a)] No. If $M>2$, let $x= 1,y=2$, then $\mathbb P(h_{ab}(x) = 1,h_{ab}(y) = 1) \ge \frac{2}{M^2}$ (when $(a,b) = (0,0), (M-1,0)$). If $M = 2$, the answer is ordinary.
+        \item [(b)] No. Let $x = 1, y = M$,  then $h_{ab}(1) = h_{ab}(M)$, thus $\mathbb P(h_{ab}(1) = 1,h_{ab}(M) = 0) = 0$
+        \item [(c)] No. As long as there exists $x\neq y\in \{0,1,\dots,n-1\}\text{ s.t. } x\equiv y\;(\mathrm{mod}\,M)$ , then there exists $\mathbb P(h_{ab}(x) =c, h_{ab}(y)=c ) \ge \frac{2}{M^2}$. There are many such $M$, for example, 7,19.
+    \end{itemize}
+\end{itemize}
+\end{answer}
+
+
+\begin{problem}{6 (12')}
+Does there exist a set of hash functions $H=\{h\mid h:\{1,2,3,4\}\rightarrow\{1,2,3,4\}\}$, where $|H| \leq 16$ and $H$ is 2-Universal? If your answer is yes, please give an example and show it is correct; if your answer is no, please prove it.
+\end{problem}
+
+\begin{answer}
+Let $\bm x=(1,2,3,4)^\top$, then construct $\bm h_i(\bm x)$ as follows:
+\[
+\begin{aligned}
+\bm{h}_1(\bm{x}) &= 
+\begin{pmatrix}
+1 \\ 1 \\ 1 \\ 1
+\end{pmatrix}, \quad
+\bm{h}_2(\bm{x}) = 
+\begin{pmatrix}
+2 \\ 2 \\ 2 \\ 2
+\end{pmatrix}, \quad
+\bm{h}_3(\bm{x}) = 
+\begin{pmatrix}
+3 \\ 3 \\ 3 \\ 3
+\end{pmatrix}, \quad
+\bm{h}_4(\bm{x}) = 
+\begin{pmatrix}
+4 \\ 4 \\ 4 \\ 4
+\end{pmatrix}, \\
+\bm{h}_5(\bm{x}) &= 
+\begin{pmatrix}
+1 \\ 2 \\ 3 \\ 4
+\end{pmatrix}, \quad
+\bm{h}_6(\bm{x}) = 
+\begin{pmatrix}
+4 \\ 1 \\ 2 \\ 3
+\end{pmatrix}, \quad
+\bm{h}_7(\bm{x}) = 
+\begin{pmatrix}
+3 \\ 4 \\ 1 \\ 2
+\end{pmatrix}, \quad
+\bm{h}_8(\bm{x}) = 
+\begin{pmatrix}
+2 \\ 3 \\ 4 \\ 1
+\end{pmatrix}, \\
+\bm{h}_9(\bm{x}) &= 
+\begin{pmatrix}
+1 \\ 3 \\ 4 \\ 2
+\end{pmatrix}, \quad
+\bm{h}_{10}(\bm{x}) = 
+\begin{pmatrix}
+2 \\ 1 \\ 3 \\ 4
+\end{pmatrix}, \quad
+\bm{h}_{11}(\bm{x}) = 
+\begin{pmatrix}
+4 \\ 2 \\ 1 \\ 3
+\end{pmatrix}, \quad
+\bm{h}_{12}(\bm{x}) = 
+\begin{pmatrix}
+3 \\ 4 \\ 2 \\ 1
+\end{pmatrix}, \\
+\bm{h}_{13}(\bm{x}) &= 
+\begin{pmatrix}
+1 \\ 4 \\ 2 \\ 3
+\end{pmatrix}, \quad
+\bm{h}_{14}(\bm{x}) = 
+\begin{pmatrix}
+3 \\ 1 \\ 4 \\ 2
+\end{pmatrix}, \quad
+\bm{h}_{15}(\bm{x}) = 
+\begin{pmatrix}
+2 \\ 3 \\ 1 \\ 4
+\end{pmatrix}, \quad
+\bm{h}_{16}(\bm{x}) = 
+\begin{pmatrix}
+4 \\ 3 \\ 2 \\ 1
+\end{pmatrix}.
+\end{aligned}
+\]
+In fact, except for the first four functions with only one element in the range, the other $12$ are permutations of $(1,2,3,4),(1,4,2,3),(1,3,4,2)$. We note that for any $i,j\in [4]$, these $12$ sets of permutations just traverse all pairwise position relationships, which means that $P(h_{ab}(x) = i,h_{ab}(y) = j)=\frac{1}{16}$ holds for $i=j,i\neq j$ (the frequencies are given by $h_1,\dots,h_4$ and $h_{5},\dots,h_{16}$ respectively), so the given $H$ meets the requirements of the question.
+\end{answer}
+
+\begin{problem}{7 (12')}
+Recall that a family of hash functions $H=\{h\mid h:[m]\to[M]\}$ is $2$-universal, if and only if for all $x$ and $y$ in $\{1,2,\cdots,m\}$, $x\ne y$, $\mathbb{P}_{h\sim H}[h(x)=w,h(y)=z]=\frac{1}{M^2}$. The randomness comes from the selection of $h$. Suppose $m\geq 2$.
+\begin{itemize}
+    \item [(1)] (2') Prove that, $|H|\geq M^2$.
+    \item [(2)] (10') Prove that, if $M=2$, then $|H|\geq m + 1$.
+    \item [] \textit{[Hint: Construct some orthogonal vectors in $\{-1,1\}^{|H|}$ based on the hash functions in $H$.]}
+\end{itemize}
+\end{problem}
+\begin{answer}
+    \item [(1)] By contradiction, if $|H|<M^2$, for $x\neq y,w,z$, if there exists $H_0\subset H$, such that $h\in H$ is equivalent to $h(x)=w,h(y)=z$, and obviously $H_0$ is not empty, then
+$$P(h(x) = w,h(y) = z)=\frac{|H_0|}{|H|}\ge \frac{1}{|H|}>\frac{1}{M^2}$$
+So $|H|\ge M^2$
+    \item [(2)] For $H$ and $\forall i\in [m]$, we construct the vector $\bm v_i=(2h_1(i)-3,\dots,2h_{|H|}(i)-3)$. Since $H$ is 2-universal, we have
+$$\bm v_i\cdot\bm v_j=\sum_{k\in[|H|]} h_k(i)h_k(j)=\sum_{h_k(i)=h_k(j),k\in[|H|]}1+\sum_{h_k(i)\neq h_k(j),k\in[|H|]}-1 = 0$$
+    So we get $m$ pairwise orthogonal vectors on $\{-1,1\}^{|H|}$
+In addition, we note that $P(h(i) = 1)=\frac{1}{4}+\frac{1}{4}=\frac{1}{2}$, which leads to $\|v_i\|_1=0$. Let $\bm v_0=(1,\dots,1)$, so:
+$$\bm v_0\cdot\bm v_i=\|v_i\|_1=0$$
+So we have found the $m+1$th orthogonal vector, and obviously $|H|\ge m+1$.
+\end{answer}
+
+
+\end{document}
