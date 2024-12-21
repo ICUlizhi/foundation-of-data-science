@@ -194,8 +194,8 @@ Given a stream of integers $a_1,a_2,\cdots$, where $a_i\in\{1,2,3,\cdots,m\}$. T
 \end{problem}
 \begin{answer}
 \begin{itemize}
-    \item [(1)] $\{1,2,3\}$
-    \item [(2)] $\{1,2,\dots,k+2\}$
+    \item [(1)]  If there is no majority element, since the algorithm always has an output, the output would be a false positive.
+    \item [(2)] If we have $k + 1$ elements, and we are getting the data with round $1, 2, \dots, k + 1$, then at last there will be no element stored in our list. Thus the algorithm under counts all of the items by $\frac{n}{k+1}$.
 \end{itemize}
 \end{answer}
 
@@ -224,8 +224,8 @@ be a set of hash functions. Is $H$ always 2-universal under the following condit
 \begin{itemize}
     \item [(1)] 
     \begin{itemize}
-        \item [(a)] No. Let $x= 2p,y=p$, then $\mathbb P(h_{ab}(2p) = 1,h_{ab}(p) = 0) = 0$.
-        \item [(b)] No. Let $x= 2p,y=p$, then $\mathbb P(h_{ab}(2p) = 1,h_{ab}(p) = 0) = 0$.
+        \item [(a)] Yes. When $m$ and $M$ are relatively prime, $ax$ and $b$ both traverse the remainder system modulo $M$, which means that I can adjust $a,b$ so that $(h(x),h(y))$ is any $(i,j)$, with equal probability.
+        \item [(b)] Yes. The same as (a).
     \end{itemize}
     \item [(2)] 
     \begin{itemize}
