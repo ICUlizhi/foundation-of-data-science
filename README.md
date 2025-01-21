@@ -9,5 +9,5 @@
 |hw2|SVD|https://www.overleaf.com/read/hcznqvvpwmmd#c1ee12|已评,7的代码在本仓库里|100|?|
 |hw3|SVD|https://www.overleaf.com/read/bqdsvbvcppvj#7f9f8b|已评|91|?|
 |hw4|machine learning|https://www.overleaf.com/read/rrscbfndvrkd#cef7a7|已评|94|?|
-|hw5|Streaming, Sketching and Sampling|https://www.overleaf.com/read/hmpsxgmffcjc#adb56e|已完成,4,5我不知道要干嘛,但看着不像其他难题|\|\|
-|hw6|Random graph|https://www.overleaf.com/read/twfvgbmtzxsy#5b2fd6|已完成,因为是证明题所以应该都对|\|\|
+|hw5|Streaming, Sketching and Sampling|https://www.overleaf.com/read/hmpsxgmffcjc#adb56e|已完成,4,5我不知道要干嘛,但看着不像其他难题|94|\|
+|hw6|Random graph|https://www.overleaf.com/read/twfvgbmtzxsy#5b2fd6|已完成,因为是证明题所以应该都对|96|\|
