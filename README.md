@@ -1,8 +1,11 @@
 "# foundation-of-data-science" 
 
+- 期中我考的相对差, 总评仍有 90+, 孔老师yyds! 
+
 - math in data science : 现在是2025/1/9, 距离考试还有13个小时, 极限push一版知识梳理 
 
 由于是强制latex编写而我觉得本地搞一堆文件很烦,所以我选择在overleaf上完成并开放链接,作业答案请直接访问这里的链接,仓库里pdf更新比较乱
+
 ||topic|url|status|score|score(average)|
 |-|-|-|-|-|-|
 |hw1|高维几何|https://www.overleaf.com/read/scrcwjjxpbmr#d5a48f|已评,8(1)写错了|97|89.7|
